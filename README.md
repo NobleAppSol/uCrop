@@ -40,10 +40,12 @@
 3. The uCrop configuration is created using the builder pattern.
 
    ```java
+/*
    UCrop.of(sourceUri, destinationUri)
        .withAspectRatio(16, 9)
        .withMaxResultSize(maxWidth, maxHeight)
-       .start(context);
+       .start(context);*/
+
    ```
 
 4. Override `onActivityResult` method and handle uCrop result.
