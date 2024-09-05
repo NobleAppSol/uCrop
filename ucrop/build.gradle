@@ -1,13 +1,15 @@
 apply plugin: 'com.android.library'
-apply from: '../mavenpush.gradle'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
-    compileSdk 33
+    compileSdk 34
+    namespace = "com.passport.photo.ucrop"
+
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 33
-        versionCode 27
-        versionName "2.2.9-native"
+        minSdk 23
+        targetSdk 34
+        versionCode 1
+        versionName '1.0.0'
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -18,8 +20,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     lintOptions {
         abortOnError false
@@ -30,7 +32,12 @@ android {
     sourceSets.main {
         jni.srcDirs = []
     }
-
+    buildFeatures {
+        buildConfig = true // Enable the BuildConfig feature
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 }
 
 dependencies {
@@ -38,5 +45,6 @@ dependencies {
     implementation "androidx.exifinterface:exifinterface:${androidx_exifinterface_version}"
     implementation "androidx.transition:transition:${androidx_transition_version}"
     // OkHttp3 versions above 3.12.x don't support pre-Lollipop Android versions (API 21)
-    implementation "com.squareup.okhttp3:okhttp:3.12.13"
+    implementation "com.squareup.okhttp3:okhttp:4.12.0"
+    implementation 'androidx.core:core-ktx:1.13.1'
 }
