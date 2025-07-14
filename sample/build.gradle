@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 34
+    compileSdk 36
     namespace = "com.yalantis.ucrop.sample"
 
     defaultConfig {
         applicationId "com.yalantis.ucrop.sample"
         minSdk 23
-        targetSdk 34
+        targetSdk 36
         versionCode 1
         versionName '1.0.0'
     }
@@ -33,6 +33,7 @@ android {
             buildConfigField("int","RequestMode", "2")
         }
     }
+    buildToolsVersion '36.0.0'
     buildFeatures {
         buildConfig = true // Enable the BuildConfig feature
     }
