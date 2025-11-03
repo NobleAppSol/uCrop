@@ -21,26 +21,33 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-    lintOptions {
-        abortOnError false
-    }
 
     resourcePrefix 'ucrop_'
 
-    sourceSets.main {
-        jni.srcDirs = []
-    }
     buildToolsVersion '36.0.0'
+    ndkVersion '29.0.14206865'
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+
     buildFeatures {
         buildConfig = true // Enable the BuildConfig feature
     }
-    kotlinOptions {
-        jvmTarget = '17'
+    kotlin {
+        jvmToolchain {17}
+    }
+    // Optional: ensures Gradle uses consistent toolchain
+    kotlin {
+        jvmToolchain(17)
     }
     publishing {
         singleVariant("release") {}
     }
-
+    lint {
+        abortOnError false
+    }
 }
 
 publishing {
@@ -59,5 +66,5 @@ dependencies {
     implementation "androidx.transition:transition:${androidx_transition_version}"
     // OkHttp3 versions above 3.12.x don't support pre-Lollipop Android versions (API 21)
     implementation "com.squareup.okhttp3:okhttp:5.1.0"
-    implementation 'androidx.core:core-ktx:1.16.0'
+    implementation "androidx.core:core-ktx:1.16.0"
 }

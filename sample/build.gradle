@@ -22,9 +22,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-    lintOptions {
-        abortOnError false
-    }
     productFlavors {
         activity {
             buildConfigField("int","RequestMode", "1")
@@ -36,6 +33,9 @@ android {
     buildToolsVersion '36.0.0'
     buildFeatures {
         buildConfig = true // Enable the BuildConfig feature
+    }
+    lint {
+        abortOnError false
     }
 }
 
