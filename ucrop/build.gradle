@@ -10,21 +10,35 @@ android {
         minSdk 23
         targetSdk 36
         vectorDrawables.useSupportLibrary = true
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+            }
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
-
+    kotlin {
+        jvmToolchain {17}
+    }
+    lintOptions {
+        abortOnError false
+    }
+    kotlin {
+        jvmToolchain(17)
+    }
     resourcePrefix 'ucrop_'
-
-    buildToolsVersion '36.0.0'
     ndkVersion '29.0.14206865'
     packagingOptions {
         jniLibs {
@@ -35,19 +49,11 @@ android {
     buildFeatures {
         buildConfig = true // Enable the BuildConfig feature
     }
-    kotlin {
-        jvmToolchain {17}
-    }
-    // Optional: ensures Gradle uses consistent toolchain
-    kotlin {
-        jvmToolchain(17)
-    }
+
     publishing {
         singleVariant("release") {}
     }
-    lint {
-        abortOnError false
-    }
+
 }
 
 publishing {
